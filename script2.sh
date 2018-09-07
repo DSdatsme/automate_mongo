@@ -1,3 +1,9 @@
+readFile=`cat do_not_delete.txt`
+ids=($readFile)
+
+INSTANCE_NAME=${ids[0]}
+ZONE=${ids[1]}
+DISK_NAME=${ids[2]}
 PROJECT="pe-training"
 ZONE='us-east1-b'
 INSTANCE_NAME="b-instance"
@@ -7,18 +13,17 @@ DATABASE_NAME="darshit"
 SNAPSHOT_NAME="snapshot"
 
 #start the mongo service
-sudo service mongo start 
+sudo service mongo start
 
 #importing the json file in mongodb
-
 mongoimport --db $DATABASE_NAME --file enron.json
 
-sudo umount /dev/disk/by-id/google-persistent-disk-1 
+sudo umount /dev/disk/by-id/google-persistent-disk-1
 gcloud compute instances detach-disk $INSTANCE_NAME --disk $DISK_NAME --zone=us-east1-b
 
 
 gcloud compute  disks snapshot $DISK_NAME --zone $ZONE --snapshot-names $SNAPSHOT_NAME
-gcloud compute instances delete $INSTANCE_NAME --zone $ZONE 
+gcloud compute instances delete $INSTANCE_NAME --zone $ZONE
 
 gcloud compute --project $PROJECT disks create $NEW_INSTANCE_NAME --size "10" --zone $ZONE --source-snapshot $SNAPSHOT_NAME --type "pd-standard"
 
