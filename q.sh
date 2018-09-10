@@ -9,11 +9,11 @@ echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/4.0 main" | sud
 sudo apt-get update
 sudo apt-get install -y mongodb-org
 sudo touch /mnt/yes.txt
-gsutil cp /mnt/yes.txt gs://darshit-source
+gsutil cp /mnt/yes.txt gs://darshit-source1
 a=1
 while [ "$a" != "0" ];
 do
-gsutil -q stat gs://darshit-source/yes1.txt
+gsutil -q stat gs://darshit-source1/yes1.txt
 a=$?
 done
 #formatting disks so that it can be mounted
@@ -22,7 +22,7 @@ sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/sd
 sudo mkdir /mnt/new
 sudo mount -o discard,defaults /dev/disk/by-id/google-persistent-disk-1 /mnt/new
 sudo mkdir /mnt/new/data
-sudo gsutil cp gs://darshit-source/enron.json /mnt/new/data/
+sudo gsutil cp gs://darshit-source1/enron.json /mnt/new/data/
 
 #start the mongo service
 sudo service mongod start
