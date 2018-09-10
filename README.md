@@ -3,7 +3,7 @@
 this repo is to automate the backup for mongodb server on Compute Instance(GCP)
 
 there are three important files in this repo
-startup.sh, startup2.sh & q.sh
+<b>startup.sh</b>, <b>startup2.sh</b> & <b>q.sh</b>
 
 startup.sh
 this will create a GCP instance and tell that instance to download "q.sh" from the bucket and run it.
@@ -20,3 +20,7 @@ then it deletes (b-instance).
 it then creates a bootable disk from snapshot and then a new instance(here new-instance) is created using newly created bootable disk.
 and lastly it restarts the mongo server which is mentioned in the startup script.
 
+Requirements:
+A local system to run scripts where you have already setup "gcloud auth login"
+a bucket with data inside (here ernon.json)
+access to create bucket and google compute
