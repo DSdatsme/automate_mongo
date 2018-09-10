@@ -1,6 +1,6 @@
 # automate_mongo
 
-this repo is to automate the backup for mongodb server
+this repo is to automate the backup for mongodb server on Compute Instance(GCP)
 
 there are three important files in this repo
 startup.sh, startup2.sh & q.sh
